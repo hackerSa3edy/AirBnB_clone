@@ -2,7 +2,7 @@
 0x00. AirBnB clone - The console
 =
 <p align="center">
-  <img src="https://github.com/Adeniyii/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="HolbertonBnB logo">
+  <img src="https://github.com/Z-Sitawi/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="hbnb logo">
 </p>
 Description 🏷
 ==
@@ -75,7 +75,6 @@ EOF  help  quit
 (hbnb)
 $
 ```
-![AirBnB Logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240109%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240109T145748Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=6c3c1101c8a286007abe82a704fa21b3bc583036925fd3328b6fb5dde36b64eb)
 
 ## Tests ✔
 * [tests](./tests): Folder of test files. 
