@@ -1,8 +1,9 @@
 
 0x00. AirBnB clone - The console
 =
-![AirBnB Logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240109%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240109T145748Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=e6e3ee2d4a175bb4db113534e94e0382aabbceca7cbfad2c6515bd9f18bdd3ff)
-
+<p align="center">
+  <img src="https://github.com/Adeniyii/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="HolbertonBnB logo">
+</p>
 Description 🏷
 ==
 Welcome to the AirBnB clone project!\
