@@ -1,9 +1,9 @@
+<h1> 0x00. AirBnB clone - The console </h1>
 
-0x00. AirBnB clone - The console
-=
-<p align="center">
+<p>
   <img src="https://github.com/Z-Sitawi/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="hbnb logo">
 </p>
+
 Description 🏷
 ==
 Welcome to the AirBnB clone project!\
@@ -75,6 +75,9 @@ EOF  help  quit
 (hbnb)
 $
 ```
+<p>
+  <img src="https://github.com/Z-Sitawi/AirBnB_clone/blob/main/assets/layout.png" alt="layout">
+</p>
 
 ## Tests ✔
 * [tests](./tests): Folder of test files. 
@@ -96,31 +99,37 @@ All your files, classes, functions must be tested with unit tests
 
 **4. Create BaseModel from dictionary**
   * [models/base_model.py]()
+
 **5. Store first object**
   * [models/engine/file_storage.py]() 
   * [models/engine/__init__.py]()
   * [models/__init__.py]()
   * [models/base_model.py]()
+
 **6. Console 0.0.1**
   * [console.py]()
+
 **7. Console 0.1**
   * [console.py]()
+
 **8. First User**
   * [models/user.py]()
   * [models/engine/file_storage.py]()
   * [console.py]()
+
 **9. More classes!**
   * [models/state.py]()
   * [models/city.py]()
   * [models/amenity.py]()
   * [models/place.py]()
   * [models/review.py]()
+
 **10. Console 1.0**
   * [console.py]()
   * [models/engine/file_storage.py]()
+
 ## Authors
 
 - [Zakaria Aaichaou](https://github.com/Z-Sitawi)
 - [Abdelrahman Mohamed](https://github.com/hackerSa3edy)
-
 
