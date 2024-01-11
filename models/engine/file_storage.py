@@ -2,9 +2,10 @@
 """File storage class"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 # All models' name and class
-models_dict = {'BaseModel': BaseModel}
+models_dict = {'BaseModel': BaseModel, 'User': User}
 
 
 class FileStorage():
