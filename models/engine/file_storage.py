@@ -6,8 +6,11 @@ from models.base_model import BaseModel
 # All models' name and class
 models_dict = {'BaseModel': BaseModel}
 
+
 class FileStorage():
-    """Serialize instances to a JSON file and deserialize JSON file to instances"""
+    """Serialize instances to a JSON file and deserialize JSON file
+        to instances
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -46,5 +49,7 @@ class FileStorage():
         except FileNotFoundError:
             return
 
-        for key in json_objects:
-            self.__objects[key] = models_dict[json_objects[key]['__class__']](**json_objects[key])
+        # Search for the specified class in models_dict dictionary
+        #   with its name, then initialize it.
+        for key, value in json_objects.items():
+            self.__objects[key] = models_dict[value['__class__']](**value)

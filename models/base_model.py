@@ -4,6 +4,7 @@ import uuid
 import datetime
 import models
 
+
 class BaseModel():
     def __init__(self, *args, **kwargs):
         """Set shared models attributes."""
@@ -25,12 +26,23 @@ class BaseModel():
             An instance with all attributes already set
         """
         dictionary.pop('__class__')
-        dictionary.update({'created_at': datetime.datetime.fromisoformat(dictionary['created_at'])})
-        dictionary.update({'updated_at': datetime.datetime.fromisoformat(dictionary['updated_at'])})
+        dictionary.update(
+            {
+                'created_at': datetime.datetime.fromisoformat(
+                    dictionary['created_at']
+                    )
+                }
+            )
+        dictionary.update(
+            {
+                'updated_at': datetime.datetime.fromisoformat(
+                    dictionary['updated_at']
+                    )
+                }
+            )
 
         for key, value in dictionary.items():
             setattr(self, key, value)
-
 
     def __str__(self):
         """Convert the instance to string.
@@ -51,5 +63,9 @@ class BaseModel():
         """Convert the instance to a dict"""
 
         instance_to_dict = self.__dict__.copy()
-        instance_to_dict.update({'__class__': self.__class__.__name__, 'created_at': self.created_at.isoformat(), 'updated_at': self.updated_at.isoformat()})
+        instance_to_dict.update({
+            '__class__': self.__class__.__name__,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat()
+            })
         return instance_to_dict
