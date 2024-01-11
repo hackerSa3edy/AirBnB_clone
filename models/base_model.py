@@ -2,6 +2,7 @@
 """Base class for all models"""
 import uuid
 import datetime
+import models
 
 class BaseModel():
     def __init__(self, *args, **kwargs):
@@ -13,6 +14,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = self.created_at
+            models.storage.new(self)
 
     def create(self, **dictionary):
         """Update the class Base and returns a instance with all
@@ -20,7 +22,7 @@ class BaseModel():
         Args:
             dictionary: Dictionary with all attributes of the object
         Return:
-            A instance with all attributes already set
+            An instance with all attributes already set
         """
         dictionary.pop('__class__')
         dictionary.update({'created_at': datetime.datetime.fromisoformat(dictionary['created_at'])})
@@ -43,6 +45,7 @@ class BaseModel():
         """Update the updated_at instance attribute."""
 
         self.updated_at = datetime.datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Convert the instance to a dict"""
