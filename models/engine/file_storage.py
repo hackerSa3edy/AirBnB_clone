@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """File storage class"""
 import json
 from models.base_model import BaseModel

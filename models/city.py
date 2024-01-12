@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """City Module to create Cities"""
 from models.base_model import BaseModel
 
