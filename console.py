@@ -7,9 +7,9 @@ that allow manipulation of a robust storage system (FileStorage / DB).
 These abstractions facilitate the seamless switching of storage types without
 the need to update the entire codebase.
 
-The functionality of this module enables interactive and non-interactive operations, such as:
+The functionality enables interactive and non-interactive operations, such as:
   - Creating a data model
-  - Managing (creating, updating, destroying, etc.) objects through a console / interpreter
+  - Managing (create, update, destry, ...) objects by a console / interpreter
   - Storing and persisting objects to a file (JSON file)
 
 Example of typical usage:
