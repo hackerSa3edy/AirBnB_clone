@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import cmd
 import sys
+from models.engine.file_storage import models_dict
 
 
 class HBNBCommand(cmd.Cmd):
@@ -31,14 +32,16 @@ class HBNBCommand(cmd.Cmd):
         and prints the id.
         USAGE: <create> <BaseModel> / <BaseModel>.<create>
         """
-        models = ['cat', 'book']  # just fo testing
+
         if len(my_model) == 0:
             print("** class name missing **")
         else:
-            if my_model not in models:
+            if my_model not in models_dict:
                 print("** class doesn't exist **")
             else:
-                print("saves it (to the JSON file) and prints the id")
+                new = models_dict[my_model]()
+                new.save()
+                print(new.id)
 
     def do_show(self, args):
         # Must be developed
