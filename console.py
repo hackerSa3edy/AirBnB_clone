@@ -17,9 +17,6 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         if not sys.stdin.isatty():
             print("")
-        if '.' in line:
-            command = line.split(".")
-            line = f"{command[1]} {command[0]}"
         return super().precmd(line)
 
     def emptyline(self):
@@ -47,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an instance based on
         the class name and id. (Ex: $ show BaseModel 1234-1234-1234)
         """
+        
         args = args.split(" ")
         if args[0] == '':
             print("** class name missing **")
@@ -60,9 +58,22 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print(storage.all()[f'{args[0]}.{args[1]}'])
     
-    def do_all(self, args):
-        # Must be developed
-        print('this is all')
+    def do_all(self, model=''):
+        """Prints all string representation of all instances based
+        or not on the class name. Ex: $ all BaseModel or $ all."""
+        
+        list_instances = []
+        if len(model) == 0:
+            for val in storage.all().values():
+                list_instances.append(str(val))
+        else:
+            if model not in models_dict:
+                print("** class doesn't exist **")
+                return 
+            for key, val in storage.all().items():
+                if model in key:
+                    list_instances.append(str(val))
+        print(list_instances)
 
     def do_update(self, args):
         # Must be developed
