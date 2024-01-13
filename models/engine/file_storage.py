@@ -52,7 +52,7 @@ class FileStorage():
             obj_to_json[key] = value.to_dict()
 
         with open(self.__file_path, 'w') as obj_to_json_file:
-            json.dump(obj_to_json, obj_to_json_file)
+            json.dump(obj_to_json, obj_to_json_file, indent=3)
 
     def reload(self):
         """Reload all objects from a file.
