@@ -2,7 +2,7 @@
 import cmd
 import sys
 from models.engine.file_storage import models_dict
-
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
@@ -44,9 +44,22 @@ class HBNBCommand(cmd.Cmd):
                 print(new.id)
 
     def do_show(self, args):
-        # Must be developed
-        print('this is show')
-
+        """Prints the string representation of an instance based on
+        the class name and id. (Ex: $ show BaseModel 1234-1234-1234)
+        """
+        args = args.split(" ")
+        if args[0] == '':
+            print("** class name missing **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            if args[0] not in models_dict:
+                print("** class doesn't exist **")
+            elif f'{args[0]}.{args[1]}' not in storage.all().keys():
+                print('** no instance found **')
+            else:
+                print(storage.all()[f'{args[0]}.{args[1]}'])
+    
     def do_all(self, args):
         # Must be developed
         print('this is all')
