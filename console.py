@@ -1,4 +1,32 @@
 #!/usr/bin/python3
+""" This module is the entry point for the command interpreter in our app.
+
+It defines a class called `HBNBCommand()`, which is a subclass
+of the `cmd.Cmd` class. The purpose of this module is to provide abstractions
+that allow manipulation of a robust storage system (FileStorage / DB).
+These abstractions facilitate the seamless switching of storage types without
+the need to update the entire codebase.
+
+The functionality of this module enables interactive and non-interactive operations, such as:
+  - Creating a data model
+  - Managing (creating, updating, destroying, etc.) objects through a console / interpreter
+  - Storing and persisting objects to a file (JSON file)
+
+Example of typical usage:
+
+    $ ./console
+    (hbnb)
+
+    (hbnb) help
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  create  help  quit
+
+    (hbnb)
+    (hbnb) quit
+    $
+"""
+
 import cmd
 import sys
 from models.engine.file_storage import models_dict
