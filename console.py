@@ -4,6 +4,7 @@ import sys
 from models.engine.file_storage import models_dict
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
@@ -27,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, my_model):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
         and prints the id.
-        USAGE: <create> <BaseModel> 
+        USAGE: <create> <BaseModel>
         Ex: create BaseModel
         """
 
@@ -47,26 +48,27 @@ class HBNBCommand(cmd.Cmd):
         USAGE: <show> <BaseModel> <id>
         Ex: $ show BaseModel 1234-1234-1234
         """
-        
+
         args = args.split(" ")
         if args[0] == '':
             print("** class name missing **")
         elif len(args) == 1:
-            print("** instance id missing **")
-        else:
             if args[0] not in models_dict:
                 print("** class doesn't exist **")
-            elif f'{args[0]}.{args[1]}' not in storage.all().keys():
+            else:
+                print("** instance id missing **")
+        else:
+            if f'{args[0]}.{args[1]}' not in storage.all().keys():
                 print('** no instance found **')
             else:
                 print(storage.all()[f'{args[0]}.{args[1]}'])
-    
+
     def do_all(self, model=''):
         """Prints all string representation of all instances based
         or not on the class name.
         USAGE: <all> / <all> <BaseModel>
         Ex: $ all   / $ all BaseModel"""
-        
+
         list_instances = []
         if len(model) == 0:
             for val in storage.all().values():
@@ -74,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if model not in models_dict:
                 print("** class doesn't exist **")
-                return 
+                return
             for key, val in storage.all().items():
                 if model in key:
                     list_instances.append(str(val))
