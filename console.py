@@ -86,8 +86,36 @@ class HBNBCommand(cmd.Cmd):
             print(list_instances)
 
     def do_update(self, args):
-        # Must be developed
-        print('this is update')
+        """Updates an instance based on the class name and id.
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Ex: $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
+        """
+        args = args.split(" ")
+        if args[0] == '':
+            print("** class name missing **")
+        elif len(args) == 1:
+            if args[0] not in models_dict:
+                print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
+        elif len(args) == 2:
+            if f'{args[0]}.{args[1]}' not in storage.all().keys():
+                print('** no instance found **')
+            else:
+                print('** attribute name missing **')
+        elif len(args) == 3:
+            print('** value missing **')
+        else:
+            val = {
+                'model': args[0],
+                'id': args[1],
+                'attribute': args[2],
+                'value': args[3]
+            }
+            updated_obj = storage.all()[f"{val['model']}.{val['id']}"].__dict__
+            updated_obj.update({val['attribute']: val['value']})
+            new = storage.all()[f"{val['model']}.{val['id']}"]
+            new.save()
 
 
 if __name__ == '__main__':
