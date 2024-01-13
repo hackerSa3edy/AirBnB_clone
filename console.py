@@ -27,7 +27,8 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, my_model):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
         and prints the id.
-        USAGE: <create> <BaseModel> / <BaseModel>.<create>
+        USAGE: <create> <BaseModel> 
+        Ex: create BaseModel
         """
 
         if len(my_model) == 0:
@@ -42,7 +43,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         """Prints the string representation of an instance based on
-        the class name and id. (Ex: $ show BaseModel 1234-1234-1234)
+        the class name and id.
+        USAGE: <show> <BaseModel> <id>
+        Ex: $ show BaseModel 1234-1234-1234
         """
         
         args = args.split(" ")
@@ -60,7 +63,9 @@ class HBNBCommand(cmd.Cmd):
     
     def do_all(self, model=''):
         """Prints all string representation of all instances based
-        or not on the class name. Ex: $ all BaseModel or $ all."""
+        or not on the class name.
+        USAGE: <all> / <all> <BaseModel>
+        Ex: $ all   / $ all BaseModel"""
         
         list_instances = []
         if len(model) == 0:
