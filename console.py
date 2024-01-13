@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 if model in key:
                     list_instances.append(str(val))
         if not list_instances:
-            print("** class doesn't exist **")
+            print("** no instance found **")
         else:
             print(list_instances)
 
@@ -90,6 +90,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         Ex: $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
         """
+
         args = args.split(" ")
         if args[0] == '':
             print("** class name missing **")
@@ -116,6 +117,26 @@ class HBNBCommand(cmd.Cmd):
             updated_obj.update({val['attribute']: val['value']})
             new = storage.all()[f"{val['model']}.{val['id']}"]
             new.save()
+
+    def do_destroy(self, args):
+        """Deletes an instance based on the class name and id.
+        USAGE: <destroy> <BaseModel> <id>
+        Ex: $ destroy BaseModel 1234-1234-1234"""
+
+        args = args.split(" ")
+        if args[0] == '':
+            print("** class name missing **")
+        elif len(args) == 1:
+            if args[0] not in models_dict:
+                print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
+        else:
+            if f'{args[0]}.{args[1]}' not in storage.all().keys():
+                print('** no instance found **')
+            else:
+                storage.all().pop(f'{args[0]}.{args[1]}')
+                storage.save()
 
 
 if __name__ == '__main__':
