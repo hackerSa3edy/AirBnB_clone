@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """Updates an instance based on the class name and id.
         Usage: update <class name> <id> <attribute name> "<attribute value>"
-        Ex: $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
+        Ex:  $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
         """
 
         args = args.split(" ")
