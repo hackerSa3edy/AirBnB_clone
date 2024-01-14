@@ -141,38 +141,36 @@ class HBNBCommand(cmd.Cmd):
         Ex:  $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
         """
 
-        args = args.split(" ", maxsplit=3)
-        if args[0] == '':
+        args = args.split()
+        if not args:
             print("** class name missing **")
-        elif len(args) == 1:
-            if args[0] not in models_dict:
-                print("** class doesn't exist **")
-            else:
-                print("** instance id missing **")
-        elif len(args) == 2:
-            if f'{args[0]}.{args[1]}' not in storage.all().keys():
-                print('** no instance found **')
-            else:
-                print('** attribute name missing **')
-        elif len(args) == 3:
+        elif args[0] not in models_dict:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        elif len(args) < 3:
+            print('** attribute name missing **')
+        elif len(args) < 4:
             print('** value missing **')
         else:
-            pattern = r'^".+"$'
-            match = re.match(pattern, args[3])
-            if match:
-                args[3] = args[3].replace('"', '')
-                val = {
-                    'model': args[0],
-                    'id': args[1],
-                    'attribute': args[2],
-                    'value': args[3]
-                }
-                upd_obj = storage.all()[f"{val['model']}.{val['id']}"].__dict__
-                upd_obj.update({val['attribute']: val['value']})
-                new = storage.all()[f"{val['model']}.{val['id']}"]
-                new.save()
+            instance_key = "{}.{}".format(args[0], args[1])
+            all_instances = storage.all()
+            if instance_key not in all_instances:
+                print('** no instance found **')
             else:
-                return
+                attribute_name = args[2]
+                attribute_value = args[3]
+                pattern = r'^".+"$'
+                match = re.match(pattern, attribute_value)
+                if not match:
+                    return
+                instance = all_instances[instance_key].__dict__
+
+                attribute_value = attribute_value.replace('"', '')
+                instance.update({attribute_name: attribute_value})
+                all_instances.update()
+                new = all_instances[instance_key]
+                new.save()
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id.
