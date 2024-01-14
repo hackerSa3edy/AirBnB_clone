@@ -150,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
                 new = storage.all()[f"{val['model']}.{val['id']}"]
                 new.save()
             else:
-                print("** value missing **")
+                return
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id.
