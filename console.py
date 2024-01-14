@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ show BaseModel 1234-1234-1234
         """
 
-        args = args.split(" ")
+        args = args.split(" ", maxsplit=2)
         if args[0] == '':
             print("** class name missing **")
         elif len(args) == 1:
@@ -119,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
         Ex:  $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
         """
 
-        args = args.split(" ")
+        args = args.split(" ", maxsplit=3)
         if args[0] == '':
             print("** class name missing **")
         elif len(args) == 1:
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print('** value missing **')
         else:
-            pattern = r'^"\w{1,}"$'
+            pattern = r'^".+"$'
             match = re.match(pattern, args[3])
             if match:
                 args[3] = args[3].replace('"', '')
@@ -145,8 +145,8 @@ class HBNBCommand(cmd.Cmd):
                     'attribute': args[2],
                     'value': args[3]
                 }
-                up_ob = storage.all()[f"{val['model']}.{val['id']}"].__dict__
-                up_ob.update({val['attribute']: val['value']})
+                upd_obj = storage.all()[f"{val['model']}.{val['id']}"].__dict__
+                upd_obj.update({val['attribute']: val['value']})
                 new = storage.all()[f"{val['model']}.{val['id']}"]
                 new.save()
             else:
@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         USAGE: <destroy> <BaseModel> <id>
         Ex: $ destroy BaseModel 1234-1234-1234"""
 
-        args = args.split(" ")
+        args = args.split(" ", maxsplit=2)
         if args[0] == '':
             print("** class name missing **")
         elif len(args) == 1:
