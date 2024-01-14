@@ -18,7 +18,7 @@ class BaseModel():
         """
 
         if len(kwargs) != 0:
-            self.create(*args, **kwargs)
+            self.create(**kwargs)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
@@ -33,23 +33,18 @@ class BaseModel():
         Return:
             An instance with all attributes already set
         """
-        dictionary.pop('__class__')
-        dictionary.update(
-            {
-                'created_at': datetime.datetime.fromisoformat(
+        for key, value in dictionary.items():
+            if key == '__class__':
+                continue
+            elif key == 'created_at':
+                value = datetime.datetime.fromisoformat(
                     dictionary['created_at']
                     )
-                }
-            )
-        dictionary.update(
-            {
-                'updated_at': datetime.datetime.fromisoformat(
+            elif key == 'updated_at':
+                value = datetime.datetime.fromisoformat(
                     dictionary['updated_at']
                     )
-                }
-            )
 
-        for key, value in dictionary.items():
             setattr(self, key, value)
 
     def __str__(self):
