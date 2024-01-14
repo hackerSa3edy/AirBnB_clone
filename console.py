@@ -62,12 +62,24 @@ class HBNBCommand(cmd.Cmd):
         if not sys.stdin.isatty():
             print("")
 
-        # Handles commands given as <class name>.command(<id>)
+        # Handles commands given as:
+        # case: <class name>.command(<id>)
         if '.' and '(' and ')' in line:
             line = line.replace('(', '.')
             line = line.replace(')', '')
             args = line.split('.')
+            if '"' in args[2]:
+                args[2] = args[2].replace('"', '')
             line = f'{args[1]} {args[0]} {args[2]}'
+
+        # case: <class name>.update(<id>, <attribute name>, <attribute value>)
+        args = line.split()
+        if len(args) >= 4:
+            for x in range(2, 4):
+                args[x] = args[x].replace('"', '')
+                args[x] = args[x].replace(',', '')
+            line = f'{args[0]} {args[1]} {args[2]} {args[3]} {args[4]}'
+
         return super().precmd(line)
 
     def emptyline(self):
@@ -160,7 +172,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 attribute_name = args[2]
                 attribute_value = args[3]
-                pattern = r'^".+"$'
+                pattern = r'^"?.+"?$'
                 match = re.match(pattern, attribute_value)
                 if not match:
                     return
