@@ -172,19 +172,20 @@ class HBNBCommand(cmd.Cmd):
         USAGE: <destroy> <BaseModel> <id>
         Ex: $ destroy BaseModel 1234-1234-1234"""
 
-        args = args.split(" ", maxsplit=2)
-        if args[0] == '':
+        args = args.split()
+        if not args:
             print("** class name missing **")
-        elif len(args) == 1:
-            if args[0] not in models_dict:
-                print("** class doesn't exist **")
-            else:
-                print("** instance id missing **")
+        elif args[0] not in models_dict:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
         else:
-            if f'{args[0]}.{args[1]}' not in storage.all().keys():
+            instance_key = "{}.{}".format(args[0], args[1])
+            all_instances = storage.all()
+            if instance_key not in all_instances:
                 print('** no instance found **')
             else:
-                storage.all().pop(f'{args[0]}.{args[1]}')
+                all_instances.pop(instance_key)
                 storage.save()
 
 
