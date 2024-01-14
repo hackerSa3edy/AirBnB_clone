@@ -61,6 +61,13 @@ class HBNBCommand(cmd.Cmd):
         """
         if not sys.stdin.isatty():
             print("")
+
+        # Handles commands given as <class name>.command(<id>)
+        if '.' and '(' and ')' in line:
+            line = line.replace('(', '.')
+            line = line.replace(')', '')
+            args = line.split('.')
+            line = f'{args[1]} {args[0]} {args[2]}'
         return super().precmd(line)
 
     def emptyline(self):
