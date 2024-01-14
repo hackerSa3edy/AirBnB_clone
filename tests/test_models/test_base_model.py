@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """
-This module provides a unittest suite for testing the BaseModel class. The BaseModel class serves as a foundation for other classes and is intended to handle common attributes and behaviors shared by various objects in a Python application.
+This module provides a unittest suite for testing the BaseModel class.
+The BaseModel class serves as a foundation for other classes and is
+intended to handle common attributes and behaviors shared by various
+objects in a Python application.
 """
 import unittest
 import os
@@ -100,7 +103,8 @@ class TestBaseModelInit(unittest.TestCase):
         self.assertNotIn('1809', obj.__dict__.values())
 
     def test_unused_args_and_used_kwargs(self):
-        """Tests the creation of an object with unused arguments and used keyword arguments.
+        """Tests the creation of an object with unused arguments
+        and used keyword arguments.
         """
         obj = BaseModel('1809', year='2024')
         self.assertNotIn('1809', obj.__dict__.values())
@@ -125,7 +129,8 @@ class TestBaseModelInit(unittest.TestCase):
         self.assertEqual(obj.available, True)
 
     def test_createdAt_typeError(self):
-        """Tests TypeError when creating an object with an incorrect data type for created_at.
+        """Tests TypeError when creating an object with an incorrect
+        data type for created_at.
         """
         dict1 = {
             'id': '1809',
@@ -137,7 +142,8 @@ class TestBaseModelInit(unittest.TestCase):
             BaseModel(**dict1)
 
     def test_updatedAt_typeError(self):
-        """Tests TypeError when creating an object with an incorrect data type for updated_at.
+        """Tests TypeError when creating an object with an incorrect
+        data type for updated_at.
         """
         date = datetime.datetime(2024, 1, 14, 17, 7, 0, 0)
         dict1 = {
@@ -157,7 +163,8 @@ class TestBaseModelInit(unittest.TestCase):
 
 
 class TestBaseModelStr(unittest.TestCase):
-    """This class contains test cases for the __str__ method of the BaseModel class.
+    """This class contains test cases for the __str__ method of
+    the BaseModel class.
     """
     def setUp(self):
         """Rename the storage file, so it doesn't get overwrited
@@ -189,7 +196,6 @@ class TestBaseModelStr(unittest.TestCase):
             pass
 
         return super().tearDown()
-
 
     def test_formated_output(self):
         """Tests if the output of the __str__ method is formatted correctly.
@@ -208,7 +214,8 @@ class TestBaseModelStr(unittest.TestCase):
 
 
 class TestBaseModelSave(unittest.TestCase):
-    """This class contains test cases for the save method of the BaseModel class.
+    """This class contains test cases for the save method of the
+    BaseModel class.
     """
     def setUp(self):
         """Rename the storage file, so it doesn't get overwrited
@@ -241,7 +248,6 @@ class TestBaseModelSave(unittest.TestCase):
 
         return super().tearDown()
 
-
     def test_save_with_args(self):
         """Tests if save method raises a TypeError when called with arguments.
         """
@@ -258,7 +264,8 @@ class TestBaseModelSave(unittest.TestCase):
         self.assertGreater(obj.updated_at, obj.created_at)
 
     def test_updatedAt_greaterThan_prev_updatedAt(self):
-        """Tests if updated_at is greater than the previous updated_at after calling save.
+        """Tests if updated_at is greater than the previous
+        updated_at after calling save.
         """
         obj = BaseModel()
         prev_updated = obj.updated_at
@@ -284,7 +291,8 @@ class TestBaseModelSave(unittest.TestCase):
 
 
 class TestBaseModelToDict(unittest.TestCase):
-    """This class contains test cases for the to_dict method of the BaseModel class.
+    """This class contains test cases for the to_dict method
+    of the BaseModel class.
     """
     def setUp(self):
         """Rename the storage file, so it doesn't get overwrited
@@ -318,7 +326,8 @@ class TestBaseModelToDict(unittest.TestCase):
         return super().tearDown()
 
     def test_to_dict_with_args(self):
-        """Tests if to_dict method raises a TypeError when called with arguments.
+        """Tests if to_dict method raises a TypeError when called
+        with arguments.
         """
         obj = BaseModel()
         with self.assertRaises(TypeError):
@@ -342,7 +351,8 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertEqual(dict, type(data))
 
     def test_dict_keys_types(self):
-        """Tests if all keys in the dictionary returned by to_dict have the correct type.
+        """Tests if all keys in the dictionary returned by to_dict
+        have the correct type.
         """
         obj = BaseModel()
         data = obj.to_dict()
@@ -360,7 +370,8 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertEqual(data, keys)
 
     def test_dict_values_types(self):
-        """Tests if all values in the dictionary returned by to_dict have the correct type.
+        """Tests if all values in the dictionary returned by
+        to_dict have the correct type.
         """
         obj = BaseModel()
         data = obj.to_dict()
