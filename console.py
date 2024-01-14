@@ -34,6 +34,12 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
+    """HBNBCommand Module to manage objects by interpreter
+
+    Arguments:
+        cmd -- Inherits cmd attributes and methods.
+
+    """
     prompt = "(hbnb) "
 
     def do_quit(self, args):
@@ -44,6 +50,15 @@ class HBNBCommand(cmd.Cmd):
     do_EOF = do_quit
 
     def precmd(self, line):
+        """print a new line if the console isn't
+        in interactive mode.
+
+        Arguments:
+            line -- The remaining arguments
+
+        Returns:
+            The default behavior of the cmd.precmd method
+        """
         if not sys.stdin.isatty():
             print("")
         return super().precmd(line)
