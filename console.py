@@ -108,7 +108,10 @@ class HBNBCommand(cmd.Cmd):
             for key, val in storage.all().items():
                 if model in key:
                     list_instances.append(str(val))
-            print(list_instances)
+            if not list_instances:
+                return
+            else:
+                print(list_instances)
 
     def do_update(self, args):
         """Updates an instance based on the class name and id.
