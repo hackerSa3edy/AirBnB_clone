@@ -26,7 +26,7 @@ Example of typical usage:
     (hbnb) quit
     $
 """
-
+import re
 import cmd
 import sys
 from models.engine.file_storage import models_dict
@@ -135,18 +135,22 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print('** value missing **')
         else:
-            if '"' in args[3]:
+            pattern = r'^"\w{1,}"$'
+            match = re.match(pattern, args[3])
+            if match:
                 args[3] = args[3].replace('"', '')
-            val = {
-                'model': args[0],
-                'id': args[1],
-                'attribute': args[2],
-                'value': args[3]
-            }
-            updated_obj = storage.all()[f"{val['model']}.{val['id']}"].__dict__
-            updated_obj.update({val['attribute']: val['value']})
-            new = storage.all()[f"{val['model']}.{val['id']}"]
-            new.save()
+                val = {
+                    'model': args[0],
+                    'id': args[1],
+                    'attribute': args[2],
+                    'value': args[3]
+                }
+                up_ob = storage.all()[f"{val['model']}.{val['id']}"].__dict__
+                up_ob.update({val['attribute']: val['value']})
+                new = storage.all()[f"{val['model']}.{val['id']}"]
+                new.save()
+            else:
+                print("** value missing **")
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id.
