@@ -26,11 +26,21 @@ Example of typical usage:
     (hbnb) quit
     $
 """
+import json
 import cmd
 import re
 import sys
 from models.engine.file_storage import models_dict
 from models import storage
+
+
+def from_json_string(my_str):
+    """
+
+    :param my_str: a JSON string
+    :return: an object
+    """
+    return json.loads(my_str)
 
 
 class HBNBCommand(cmd.Cmd):
@@ -63,6 +73,16 @@ class HBNBCommand(cmd.Cmd):
             print("")
 
         # Handles commands given as:
+        # case: <class name>.update(<id>, <attribute name>, <attribute value>)
+        if '{' and '}' in line:
+            line = line.replace('(', '.')
+            line = line.replace(')', '')
+            line = line.replace(',', '', 1)
+            line = line.replace('.', ' ')
+            args = line.split(' ', maxsplit=3)
+            line = f'{args[1]} {args[0]} {args[2]} {args[3]}'
+            return super().precmd(line)
+
         # case: <class name>.command(<id>)
         if '.' and '(' and ')' in line:
             line = line.replace('(', '.')
@@ -72,13 +92,14 @@ class HBNBCommand(cmd.Cmd):
                 args[2] = args[2].replace('"', '')
             line = f'{args[1]} {args[0]} {args[2]}'
 
-        # case: <class name>.update(<id>, <attribute name>, <attribute value>)
         args = line.split()
         if len(args) >= 4:
             for x in range(2, 4):
                 args[x] = args[x].replace('"', '')
                 args[x] = args[x].replace(',', '')
             line = f'{args[0]} {args[1]} {args[2]} {args[3]} {args[4]}'
+
+        # case <class name>.update(<id>, <dictionary representation>)
 
         return super().precmd(line)
 
@@ -153,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
         Ex:  $ update BaseModel 1234-1234-1234 email "airbnb@mail.com"
         """
 
-        args = args.split()
+        args = args.split(' ', maxsplit=3)
         if not args:
             print("** class name missing **")
         elif args[0] not in models_dict:
@@ -165,6 +186,26 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print('** value missing **')
         else:
+            if '{' in args[2]:
+                args[2] = args[2] + args[3]
+                args.pop(3)
+                args[2] = args[2].replace("\'", "\"")
+                model_name = args[0]
+                model_id = args[1].replace('"', "")
+                new_attributes_dict = from_json_string(args[2])
+                all_instances = storage.all()
+                instance_key = f'{model_name}.{model_id}'
+                if instance_key not in all_instances:
+                    print('** no instance found **')
+                    return
+                else:
+                    instance = all_instances[instance_key].__dict__
+                    instance.update(new_attributes_dict)
+                    all_instances.update()
+                    new = all_instances[instance_key]
+                    new.save()
+                    return
+
             instance_key = "{}.{}".format(args[0], args[1])
             all_instances = storage.all()
             if instance_key not in all_instances:
