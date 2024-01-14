@@ -135,6 +135,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print('** value missing **')
         else:
+            if '"' in args[3]:
+                args[3] = args[3].replace('"', '')
             val = {
                 'model': args[0],
                 'id': args[1],
