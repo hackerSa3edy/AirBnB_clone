@@ -193,6 +193,23 @@ class HBNBCommand(cmd.Cmd):
                 all_instances.pop(instance_key)
                 storage.save()
 
+    def do_count(self, my_model):
+        """Retrieve the number of instances of a class
+        USAGE:<class name>.count() / count <class name>
+        EX: User.count() / count User"""
+        number_of_instances = 0
+        if not my_model:
+            print("** class name missing **")
+        elif my_model not in models_dict:
+            print("** class doesn't exist **")
+            return
+        else:
+            all_instances_keys = list(storage.all().keys())
+            for key in all_instances_keys:
+                if my_model in key:
+                    number_of_instances += 1
+        print(number_of_instances)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
