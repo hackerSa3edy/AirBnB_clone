@@ -6,8 +6,16 @@ import models
 
 
 class BaseModel():
+    """BaseModel
+    desc:
+        Contains all the necassary and shared attributes/methods.
+    """
+
     def __init__(self, *args, **kwargs):
-        """Set shared models attributes."""
+        """Constructor for the BaseModel class
+        desc:
+            Initialize all the mandatory attributes.
+        """
 
         if len(kwargs) != 0:
             self.create(*args, **kwargs)
@@ -60,7 +68,11 @@ class BaseModel():
         models.storage.save()
 
     def to_dict(self):
-        """Convert the instance to a dict"""
+        """Convert the instance to its dictionary representation
+
+        Returns:
+            All the instance attributes in a dictionary
+        """
 
         instance_to_dict = self.__dict__.copy()
         instance_to_dict.update({
