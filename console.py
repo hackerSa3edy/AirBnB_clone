@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             for key, val in storage.all().items():
                 if model in key:
                     list_instances.append(str(val))
-       if not list_instaces:
+       if not list_instances:
            return
        else:
            print(list_instances)
