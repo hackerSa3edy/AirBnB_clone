@@ -75,15 +75,14 @@ class HBNBCommand(cmd.Cmd):
         Ex: create BaseModel
         """
 
-        if len(my_model) == 0:
+        if not my_model:
             print("** class name missing **")
+        elif my_model not in models_dict:
+            print("** class doesn't exist **")
         else:
-            if my_model not in models_dict:
-                print("** class doesn't exist **")
-            else:
-                new = models_dict[my_model]()
-                new.save()
-                print(new.id)
+            new_instance = models_dict[my_model]()
+            new_instance.save()
+            print(new_instance.id)
 
     def do_show(self, args):
         """Prints the string representation of an instance based on
