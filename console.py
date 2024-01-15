@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
             for x in range(2, 4):
                 args[x] = args[x].replace('"', '')
                 args[x] = args[x].replace(',', '')
-            line = f'{args[0]} {args[1]} {args[2]} {args[3]} {args[4]}'
+            line = f'{args[0]} {args[1]} {args[2]} {args[3]}'
 
         # case <class name>.update(<id>, <dictionary representation>)
 
