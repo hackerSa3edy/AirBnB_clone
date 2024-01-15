@@ -179,7 +179,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         args = args.split(' ', maxsplit=3)
-        if not args:
+        if args == ['']:
             print("** class name missing **")
         elif args[0] not in models_dict:
             print("** class doesn't exist **")
