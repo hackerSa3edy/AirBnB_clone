@@ -257,6 +257,7 @@ class HBNBCommand(cmd.Cmd):
         number_of_instances = 0
         if not my_model:
             print("** class name missing **")
+            return
         elif my_model not in models_dict:
             print("** class doesn't exist **")
             return
