@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""This module serves as a unittest suite for the User class. The tests cover a range of scenarios, including the initialization, string representation, saving, and dictionary conversion of User objects.
+"""This module serves as a unittest suite for the User class.
+The tests cover a range of scenarios, including the initialization,
+string representation, saving, and dictionary conversion of User objects.
 """
 import unittest
 import os
@@ -76,12 +78,11 @@ class TestUserInit(unittest.TestCase):
         """Test if the email attribute follows the email pattern.
         """
         obj = User()
-        regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         obj.email = "abdo@gmail.com"
         self.assertRegex(obj.email, regex)
         obj.email = "abdo@home"
         self.assertNotRegex(obj.email, regex)
-
 
     def test_uniq_id_for_multiple_objects(self):
         """Test uniqueness of IDs for multiple objects.
@@ -130,7 +131,8 @@ class TestUserInit(unittest.TestCase):
         self.assertNotIn('1809', obj.__dict__.values())
 
     def test_unused_args_and_used_kwargs(self):
-        """Test handling unused positional arguments and used keyword arguments.
+        """Test handling unused positional arguments and
+        used keyword arguments.
         """
         obj = User('1809', year='2024')
         self.assertNotIn('1809', obj.__dict__.values())
@@ -284,7 +286,8 @@ class TestUserSave(unittest.TestCase):
         return super().tearDown()
 
     def test_save_with_args(self):
-        """Test raising a TypeError when save method is called with arguments.
+        """Test raising a TypeError when save method is called
+        with arguments.
         """
         obj = User()
         obj.email = 'abdo@email.com'
@@ -307,7 +310,8 @@ class TestUserSave(unittest.TestCase):
         self.assertGreater(obj.updated_at, obj.created_at)
 
     def test_updatedAt_greaterThan_prev_updatedAt(self):
-        """Test if updated_at is greater than the previous updated_at after saving.
+        """Test if updated_at is greater than the previous
+        updated_at after saving.
         """
         obj = User()
         obj.email = 'abdo@email.com'
@@ -379,7 +383,8 @@ class TestUserToDict(unittest.TestCase):
         return super().tearDown()
 
     def test_to_dict_with_args(self):
-        """Test raising a TypeError when to_dict method is called with arguments.
+        """Test raising a TypeError when to_dict method is
+        called with arguments.
         """
         obj = User()
         with self.assertRaises(TypeError):
@@ -449,7 +454,8 @@ class TestUserToDict(unittest.TestCase):
             self.assertEqual(str, type(value))
 
     def test_dict_values(self):
-        """Test if the values in the dictionary match the expected values.
+        """Test if the values in the dictionary match the
+        expected values.
         """
         date = datetime.datetime(2024, 1, 14, 17, 7, 0, 0)
         dict1 = {
