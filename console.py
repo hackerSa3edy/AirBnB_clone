@@ -88,9 +88,10 @@ class HBNBCommand(cmd.Cmd):
             line = line.replace('(', '.')
             line = line.replace(')', '')
             args = line.split('.')
-            if '"' in args[2]:
-                args[2] = args[2].replace('"', '')
-            line = f'{args[1]} {args[0]} {args[2]}'
+            if len(args) >= 3:
+                if '"' in args[2]:
+                    args[2] = args[2].replace('"', '')
+                line = f'{args[1]} {args[0]} {args[2]}'
 
         args = line.split()
         if len(args) >= 4:
