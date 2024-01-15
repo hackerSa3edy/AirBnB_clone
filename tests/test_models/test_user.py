@@ -6,6 +6,7 @@ import datetime
 from models.user import User
 import models
 from time import sleep
+import re
 import json
 
 
@@ -48,6 +49,15 @@ class TestUserInit(unittest.TestCase):
         self.assertEqual(obj.password, "")
         self.assertEqual(obj.first_name, "")
         self.assertEqual(obj.email, "")
+
+    def test_email_if_it_actually_email(self):
+        obj = User()
+        regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        obj.email = "abdo@gmail.com"
+        self.assertRegex(obj.email, regex)
+        obj.email = "abdo@home"
+        self.assertNotRegex(obj.email, regex)
+
 
     def test_uniq_id_for_multiple_objects(self):
         obj1 = User()
