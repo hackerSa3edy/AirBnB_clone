@@ -38,7 +38,8 @@ class TestFileStorageAll(unittest.TestCase):
     """Testing the all method of the FileStorage class.
 
     Arguments:
-        unittest -- _description_Inherits unittest.TestCase's attributes and methods
+        unittest -- _description_Inherits unittest.TestCase's attributes
+        and methods
     """
     def test_objects_same_as_in_objects_attr(self):
         """Ensures that loaded objects is the same as the object.
@@ -58,17 +59,20 @@ class TestFileStorageNew(unittest.TestCase):
         unittest -- Inherits unittest.TestCase's attributes and methods
     """
     def test_new_object_in_objects_attr(self):
-        """Verifies that a new object is correctly added to the __objects attribute.
+        """Verifies that a new object is correctly added to the __objects
+        attribute.
         """
         pass
 
     def test_new_with_noArgs(self):
-        """Tests the behavior of the new method when called with no arguments.
+        """Tests the behavior of the new method when called with no
+        arguments.
         """
         pass
 
     def test_new_object_without_id_attr(self):
-        """Tests the behavior of the new method when called with an object without the id attribute.
+        """Tests the behavior of the new method when called with an object
+        without the id attribute.
         """
         pass
 
@@ -100,7 +104,8 @@ class TestFileStorageSave(unittest.TestCase):
         pass
 
     def test_object_without_toDict_method(self):
-        """Ensures proper handling when attempting to save an object without a to_dict method.
+        """Ensures proper handling when attempting to save an object without
+        a to_dict method.
         """
         pass
 
@@ -122,22 +127,26 @@ class TestFileStorageReload(unittest.TestCase):
         pass
 
     def test_file_not_exist(self):
-        """Tests the behavior when attempting to reload from a non-existent file.
+        """Tests the behavior when attempting to reload from a non-existent
+        file.
         """
         pass
 
     def test_loaded_objects_not_json(self):
-        """Ensures proper handling when the loaded data from the file is not in JSON format.
+        """Ensures proper handling when the loaded data from the file is not
+        in JSON format.
         """
         pass
 
     def test_specified_object_not_found_in_models_dict(self):
-        """Tests the case when a specified object in the loaded data is not found in the models_dict.
+        """Tests the case when a specified object in the loaded data is not
+        found in the models_dict.
         """
         pass
 
     def test_the_attr_class_not_found_in_object(self):
-        """Verifies the handling of cases where the '__class__' attribute is not found in the loaded object.
+        """Verifies the handling of cases where the '__class__' attribute
+        is not found in the loaded object.
         """
         pass
 
@@ -147,6 +156,7 @@ class TestFileStorageReload(unittest.TestCase):
         pass
 
     def test_reloaded_objects_are_in_file(self):
-        """Ensures that the objects reloaded from the file match the contents of the file.
+        """Ensures that the objects reloaded from the file match the
+        contents of the file.
         """
         pass
