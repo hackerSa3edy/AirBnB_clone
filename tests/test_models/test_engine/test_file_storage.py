@@ -14,6 +14,7 @@ import os
 from models.base_model import BaseModel
 import models
 
+
 class TestFileStorageAttrs(unittest.TestCase):
     """Testing the attributes of the FileStorage class.
 
@@ -59,7 +60,6 @@ class TestFileStorageAttrs(unittest.TestCase):
         """
         with self.assertRaises(AttributeError):
             models.storage.__file_path
-
 
     def test_private_attr_objects(self):
         """Tests the existence and privacy of the __objects attribute.
@@ -290,7 +290,6 @@ class TestFileStorageSave(unittest.TestCase):
         self.assertDictEqual(json_data, models.storage.all())
 
 
-
 class TestFileStorageReload(unittest.TestCase):
     """Testing the reload method of the FileStorage class.
 
@@ -363,14 +362,16 @@ class TestFileStorageReload(unittest.TestCase):
         found in the models_dict.
         """
         with open('file.json', 'w') as file:
-            file.write(\
-                '{"BaseModel.f1a83b88-534e-4cf1-841d-091f71f057af": {' + \
-                    '"id": "f1a83b88-534e-4cf1-841d-091f71f057af",' + \
-                    '"created_at": "2024-01-16T13:51:12.445588",' + \
-                    '"updated_at": "2024-01-16T13:51:16.891133",' + \
-                    '"__class__": "TestReload"'
-                    '}' + \
-                '}')
+            file.write('\
+                       {\
+                           "BaseModel.f1a83b88-534e-4cf1-841d-091f71f057af":\
+                           {\
+                               "id": "f1a83b88-534e-4cf1-841d-091f71f057af",\
+                               "created_at": "2024-01-16T13:51:12.445588",\
+                               "updated_at": "2024-01-16T13:51:16.891133",\
+                               "__class__": "TestReload"\
+                           }\
+                       }')
 
         with self.assertRaises(KeyError):
             models.storage.reload()
@@ -381,13 +382,15 @@ class TestFileStorageReload(unittest.TestCase):
         """
 
         with open('file.json', 'w') as file:
-            file.write(\
-                '{"BaseModel.f1a83b88-534e-4cf1-841d-091f71f057af": {' + \
-                    '"id": "f1a83b88-534e-4cf1-841d-091f71f057af",' + \
-                    '"created_at": "2024-01-16T13:51:12.445588",' + \
-                    '"updated_at": "2024-01-16T13:51:16.891133"' + \
-                    '}' + \
-                '}')
+            file.write('\
+                       {\
+                           "BaseModel.f1a83b88-534e-4cf1-841d-091f71f057af":\
+                           {\
+                               "id": "f1a83b88-534e-4cf1-841d-091f71f057af",\
+                               "created_at": "2024-01-16T13:51:12.445588",\
+                               "updated_at": "2024-01-16T13:51:16.891133"\
+                           }\
+                       }')
 
         with self.assertRaises(KeyError) as file:
             models.storage.reload()
