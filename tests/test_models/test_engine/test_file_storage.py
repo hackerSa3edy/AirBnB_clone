@@ -55,11 +55,26 @@ class TestFileStorageAttrs(unittest.TestCase):
 
         return super().tearDown()
 
-    def test_the_private_attributes_type(self):
-        """Test the type of the private attributes
+    def test_the_private_attributes_objects_type(self):
+        """Test the type of the private attribute __objects
         """
         self.assertEqual(dict, type(models.FileStorage._FileStorage__objects))
+
+
+    def test_the_private_attributes_filePath_type(self):
+        """Test the type of the private attribute __file_path
+        """
         self.assertEqual(str, type(models.FileStorage._FileStorage__file_path))
+
+    def test_the_default_value_for_file_path_private_attributes(self):
+        """Check for the default value for the __file_path private attributes
+        """
+        self.assertEqual('file.json', models.FileStorage._FileStorage__file_path)
+
+    def test_the_default_value_for_objects_private_attributes(self):
+        """Check for the default value for the __objects private attributes
+        """
+        self.assertEqual({}, models.FileStorage._FileStorage__objects)
 
     def test_private_attributes(self):
         """Tests the existence and privacy of the __file_path and
