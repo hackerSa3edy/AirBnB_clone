@@ -60,7 +60,6 @@ class TestFileStorageAttrs(unittest.TestCase):
         """
         self.assertEqual(dict, type(models.FileStorage._FileStorage__objects))
 
-
     def test_the_private_attributes_filePath_type(self):
         """Test the type of the private attribute __file_path
         """
@@ -69,7 +68,10 @@ class TestFileStorageAttrs(unittest.TestCase):
     def test_the_default_value_for_file_path_private_attributes(self):
         """Check for the default value for the __file_path private attributes
         """
-        self.assertEqual('file.json', models.FileStorage._FileStorage__file_path)
+        self.assertEqual(
+            'file.json',
+            models.FileStorage._FileStorage__file_path
+            )
 
     def test_the_default_value_for_objects_private_attributes(self):
         """Check for the default value for the __objects private attributes
