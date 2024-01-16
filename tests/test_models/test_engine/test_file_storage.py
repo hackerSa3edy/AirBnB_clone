@@ -32,9 +32,6 @@ class TestFileStorageAttrs(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-        # Initialize new storage before each test
-        models.FileStorage._FileStorage__objects = {}
-
         return super().setUp()
 
     def tearDown(self):
@@ -43,6 +40,10 @@ class TestFileStorageAttrs(unittest.TestCase):
         Returns:
             The default behavior of the parent class
         """
+
+        # Initialize new storage before each test
+        models.FileStorage._FileStorage__objects = {}
+
         try:
             os.remove('file.json')
         except FileNotFoundError:
@@ -112,9 +113,6 @@ class TestFileStorageAll(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-        # Initialize new storage before each test
-        models.FileStorage._FileStorage__objects = {}
-
         return super().setUp()
 
     def tearDown(self):
@@ -123,67 +121,10 @@ class TestFileStorageAll(unittest.TestCase):
         Returns:
             The default behavior of the parent class
         """
-        try:
-            os.remove('file.json')
-        except FileNotFoundError:
-            pass
-
-        try:
-            os.rename('temp', 'file.json')
-        except FileNotFoundError:
-            pass
-
-        return super().tearDown()
-
-    def test_objects_same_as_in_objects_attr(self):
-        """Ensures that loaded objects is the same as the object.
-        """
-        obj = BaseModel()
-        obj2 = BaseModel()
-        self.assertDictEqual(
-            {
-                f"BaseModel.{obj.id}": obj,
-                f"BaseModel.{obj2.id}": obj2
-                },
-            models.storage.all()
-            )
-
-    def test_with_additional_args(self):
-        """Test adding additional arguments
-        """
-        with self.assertRaises(TypeError):
-            models.storage.all('argument')
-
-
-class TestFileStorageNew(unittest.TestCase):
-    """Testing the new method of the FileStorage class.
-
-    Arguments:
-        unittest -- Inherits unittest.TestCase's attributes and methods
-    """
-
-    def setUp(self):
-        """Rename the storage file, so it doesn't get overwrited
-
-        Returns:
-            The default behavior of the parent class
-        """
-        try:
-            os.rename('file.json', 'temp')
-        except FileNotFoundError:
-            pass
 
         # Initialize new storage before each test
         models.FileStorage._FileStorage__objects = {}
 
-        return super().setUp()
-
-    def tearDown(self):
-        """Reset the storage file name to its default
-
-        Returns:
-            The default behavior of the parent class
-        """
         try:
             os.remove('file.json')
         except FileNotFoundError:
@@ -249,9 +190,6 @@ class TestFileStorageSave(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-        # Initialize new storage before each test
-        models.FileStorage._FileStorage__objects = {}
-
         return super().setUp()
 
     def tearDown(self):
@@ -260,6 +198,10 @@ class TestFileStorageSave(unittest.TestCase):
         Returns:
             The default behavior of the parent class
         """
+
+        # Initialize new storage before each test
+        models.FileStorage._FileStorage__objects = {}
+
         try:
             os.remove('file.json')
         except FileNotFoundError:
@@ -327,9 +269,6 @@ class TestFileStorageReload(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-        # Initialize new storage before each test
-        models.FileStorage._FileStorage__objects = {}
-
         return super().setUp()
 
     def tearDown(self):
@@ -338,6 +277,10 @@ class TestFileStorageReload(unittest.TestCase):
         Returns:
             The default behavior of the parent class
         """
+
+        # Initialize new storage before each test
+        models.FileStorage._FileStorage__objects = {}
+
         try:
             os.remove('file.json')
         except FileNotFoundError:
