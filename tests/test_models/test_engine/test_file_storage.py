@@ -112,6 +112,11 @@ class TestFileStorageAll(unittest.TestCase):
 
         return super().tearDown()
 
+    def test_the_objects_attribute_type(self):
+        """Test the type of the private attribute __objects
+        """
+        self.assertEqual(dict, type(models.storage.all()))
+
     def test_objects_same_as_in_objects_attr(self):
         """Ensures that loaded objects is the same as the object.
         """
