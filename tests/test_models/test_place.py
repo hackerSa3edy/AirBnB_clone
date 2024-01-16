@@ -626,8 +626,22 @@ class TestPlaceToDict(unittest.TestCase):
         obj.amenity_ids = ['222', '333']
 
         data = obj.to_dict()
-        for value in data.values():
-            self.assertEqual(str, type(value))
+        self.assertEqual(str, type(data['id']))
+        self.assertEqual(str, type(data['created_at']))
+        self.assertEqual(str, type(data['updated_at']))
+        self.assertEqual(str, type(data['city_id']))
+        self.assertEqual(str, type(data['user_id']))
+        self.assertEqual(str, type(data['name']))
+        self.assertEqual(str, type(data['description']))
+        self.assertEqual(int, type(data['number_rooms']))
+        self.assertEqual(int, type(data['number_bathrooms']))
+        self.assertEqual(int, type(data['max_guest']))
+        self.assertEqual(int, type(data['price_by_night']))
+        self.assertEqual(float, type(data['latitude']))
+        self.assertEqual(float, type(data['longitude']))
+        self.assertEqual(list, type(data['amenity_ids']))
+        for id in data['amenity_ids']:
+            self.assertEqual(str, type(id))
 
     def test_dict_values(self):
         """Test if the values in the dictionary match the
