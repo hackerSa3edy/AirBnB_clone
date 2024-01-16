@@ -55,16 +55,12 @@ class TestFileStorageAttrs(unittest.TestCase):
 
         return super().tearDown()
 
-    def test_private_attr_filePath(self):
-        """Tests the existence and privacy of the __file_path attribute.
+    def test_private_attributes(self):
+        """Tests the existence and privacy of the __file_path and
+        __objects attributes.
         """
         with self.assertRaises(AttributeError):
             models.storage.__file_path
-
-    def test_private_attr_objects(self):
-        """Tests the existence and privacy of the __objects attribute.
-        """
-        with self.assertRaises(AttributeError):
             models.storage.__objects
 
     def test_with_additional_attr(self):
