@@ -139,3 +139,7 @@ article > .description + .amenities > ul .pet {
 	background-repeat: no-repeat;
 	background-size: contain;
 }
+
+footer {
+	position: relative;
+}
